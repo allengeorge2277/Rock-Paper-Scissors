@@ -1,4 +1,4 @@
-# Rock, Paper, Scissors Game Welcome to the Rock, Paper, Scissors game! This is a simple command-line game where you can play against the computer. 
+# Welcome to the Rock, Paper, Scissors game! This is a simple command-line game where you can play against the computer. 
 
 ## How to Play 
 1. **Input Handling**
