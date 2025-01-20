@@ -30,46 +30,57 @@ def finalResult(new_choice):
     if new_choice in human_win: return 'H'
     else: return 'C'
 
-human_count = 0
-computer_count = 0
+def user_input():
 
-while True:
-    
-    human = input("\nRock, Paper, Scissors (r,p,s):").lower()
-    if human not in ['r','p','s']:
-        print('Invalid choice')
-        continue
-    
-    computer = computerChoice(random.randrange(0,3))
-    new_choice = [human,computer]
+    while True:
+        human = input("\nRock, Paper, Scissors (r,p,s):").lower()
+        if human not in ['r','p','s']:
+            print('Invalid choice')
+        else:
+            return human
+
+def generate_output(human,computer):
     forOutput = {
-        'r' : '🪨',
-        'p' : '📜',
-        's' : '✂️'
+    'r' : '🪨',
+    'p' : '📜',
+    's' : '✂️'
     }
-
     print("You: ",forOutput[human])
     print("Computer: ",forOutput[computer])
-    
-    if human == computer:
-        print('\nIts a tie 😊')
-    else:
-        result = finalResult(new_choice)
-        if result == 'H':
-            human_count += 1
-            print('\nYou win!!')
-        else:
-            computer_count += 1
-            print('\nComputer won!!')
-    
-    while True:
-        end = input('\nWant to continue? (y -> yes|n -> no): ').lower()
-        if end in ['y','n']:
-            break
-        print('Give valid input, either "y" or "n"')
 
-    if end == 'n': 
-        print('\nFINAL SCORE')
-        print(f'Human: {human_count}')
-        print(f'Computer: {computer_count}')
-        break
+def play_game():
+    human_count = 0
+    computer_count = 0
+    continue_play = True
+
+    while continue_play:
+        human = user_input()
+        computer = computerChoice(random.randrange(0,3))
+        new_choice = [human,computer]
+        generate_output(human,computer)
+
+        if human == computer:
+            print('\nIts a tie 😊')
+        else:
+            result = finalResult(new_choice)
+            if result == 'H':
+                human_count += 1
+                print('\nYou win!!')
+            else:
+                computer_count += 1
+                print('\nComputer won!!')
+
+        while True:
+            end = input('\nWant to continue? (y -> yes|n -> no): ').lower()
+            if end in ['y','n']:
+                if end == 'n':
+                    continue_play = False
+                break
+            print('Give valid input, either "y" or "n"')
+
+    print('\nFINAL SCORE')
+    print(f'Human: {human_count}')
+    print(f'Computer: {computer_count}')
+
+play_game()
+
